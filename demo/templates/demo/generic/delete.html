@@ -1,0 +1,14 @@
+{% extends "demo/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block main-content %}
+
+<form method="post">
+  {% csrf_token %}
+  <p>Are you sure you want to delete "{{ object }}"?</p>
+  {{ form|crispy }}
+  <input type="submit" value="Confirm"
+    class="btn text-danger-emphasis bg-danger-subtle">
+</form>
+
+{% endblock main-content %}

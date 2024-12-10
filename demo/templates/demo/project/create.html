@@ -1,0 +1,23 @@
+{% extends "demo/base.html" %}
+
+{% block main-content %}
+
+<div class="mb-2">
+  <div class="mb-2">
+    <h4>Create Project</h4>
+  </div>
+  <hr>
+  <div class="mb-2">
+    <form method="post">
+      {% csrf_token %}
+
+      {% include "demo/project/form.html" %}
+
+      <div class="d-flex justify-content-end mt-3">
+        <input type="submit" value="Create Project" class="btn btn-primary">
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock main-content %}

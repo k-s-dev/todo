@@ -1,0 +1,92 @@
+{% extends "demo/base.html" %} {% block sidebar-left %}
+
+<div class="sidebar-left border rounded p-2">
+  {{ workspaces_rendered|safe }}
+</div>
+
+{% endblock sidebar-left %} {% block main-content %}
+
+<div class="my-2">
+  <h4 class="d-inline-block">Workspace: {{ workspace.name|title }}</h4>
+  <div class="float-end">
+    <a href="{{ workspace.get_absolute_url }}"
+      class="btn text-primary-emphasis bg-primary-subtle"
+      >View</a>
+    <a href="{% url 'demo:workspace-update' workspace.pk %}"
+      class="btn text-warning-emphasis bg-warning-subtle"
+      >Update</a>
+    <a href="{% url 'demo:workspace-delete' workspace.pk %}"
+      class="btn text-danger-emphasis bg-danger-subtle"
+      >Delete</a>
+  </div>
+  <div class="my-2">
+    <p class="">{{ workspace.detail }}</p>
+    <p class="">
+      <span class="">Owner: {{ workspace.created_by }}</span>
+      <span class="">| Created at: {{ workspace.created_at }}</span>
+      <span class="">| Updated at: {{ workspace.updated_at }}</span>
+    </p>
+  </div>
+</div>
+  <hr />
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-lg-6 col-md-8 m-2 p-2 border">
+        <div class="mb-3">
+          <h4 class="d-inline-block">Category</h4>
+          <a
+            href="{% url 'demo:category-create' %}?ws_pk={{ workspace.pk }}"
+            class="btn text-secondary-emphasis bg-secondary-subtle float-end"
+            >Create</a
+          >
+        </div>
+        {{ ws_categories_detail_rendered|safe }}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row row-cols-xl-3 row-cols-md-2 row-cols-1">
+
+      <div class="col m-2 p-2 border">
+        <div class="mb-3">
+          <h4 class="d-inline-block">Priority</h4>
+          <a
+            href="{% url 'demo:priority-create' %}?ws_pk={{ workspace.pk }}"
+            class="btn text-secondary-emphasis bg-secondary-subtle float-end"
+            >Create</a
+          >
+        </div>
+        {{ ws_priorities_rendered|safe }}
+      </div>
+
+      <div class="col m-2 p-2 border">
+        <div class="mb-3">
+          <h4 class="d-inline-block">Status</h4>
+          <a
+            href="{% url 'demo:status-create' %}?ws_pk={{ workspace.pk }}"
+            class="btn text-secondary-emphasis bg-secondary-subtle float-end"
+            >Create</a
+          >
+        </div>
+        {{ ws_statuses_rendered|safe }}
+      </div>
+
+      <div class="col m-2 p-2 border">
+        <div class="mb-3">
+          <h4 class="d-inline-block">Tag</h4>
+          <a
+            href="{% url 'demo:tag-create' %}?ws_pk={{ workspace.pk }}"
+            class="btn text-secondary-emphasis bg-secondary-subtle float-end"
+            >Create</a
+          >
+        </div>
+        {{ ws_tags_rendered|safe }}
+      </div>
+
+    </div>
+  </div>
+  {% endblock main-content %}
