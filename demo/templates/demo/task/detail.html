@@ -1,0 +1,85 @@
+{% extends "demo/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block main-content %}
+
+<h3>{{ task.title | title }}</h3>
+<h4>
+  Workspace: <a href="{{ workspace.get_absolute_url }}"
+    class="text-warning-emphasis bg-warning-subtle"
+    >{{ workspace.name | title }}</a>
+  > Category: <a href="{{ category.get_absolute_url }}"
+    class="text-danger-emphasis bg-danger-subtle"
+    >{{ category.name | title }}</a>
+  {% if task.project %}
+  > Project: <a href="{{ task.project.get_absolute_url }}"
+    class="link-secondary"
+    >{{ task.project.title | title }}</a>
+  {% endif %}
+</h4>
+<div class="my-2">
+  <p class="">{{ task.detail }}</p>
+  <p class="">
+    <span class="">Owner: {{ task.created_by }}</span>
+    <span class="">| Created at: {{ task.created_at }}</span>
+    <span class="">| Updated at: {{ task.updated_at }}</span>
+  </p>
+</div>
+
+<h6>
+  Tags: 
+  {% if task.tags.all %}
+    {% for tag in task.tags.all %}
+    {{ tag }}, 
+    {% endfor %}
+  {% else %}
+    No tags
+  {% endif %}
+</h6>
+<hr>
+<h4>Task Hierarchy</h4>
+{{ rendered_task_hierarchy|safe }}
+<hr>
+<div class="mb-2">
+  <h4 class="mb-4">View/Edit Task</h4>
+  <div class="border rounded border-secondary p-4">
+    <form method="post">
+      {% csrf_token %}
+
+      {% include "demo/task/form.html" %}
+
+      <div class="d-flex justify-content-end">
+        <input type="submit" value="Update Task"
+          class="btn text-warning-emphasis bg-warning-subtle">
+        <a href="{% url 'demo:task-delete' task.uuid %}"
+          class="btn text-danger-emphasis bg-danger-subtle ms-3">Delete Task</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div class="mb-3">
+  <h4>Existing Comments</h4>
+  {% if rendered_comments %}
+  {{ rendered_comments | safe }}
+  {% else %}
+  <p>There are no comments yet.</p>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  <h4>Comment</h4>
+  <div class="border rounded border-secondary p-4">
+    <form method="post">
+      {% csrf_token %}
+      {{ comment_form|crispy }}
+      <input type="submit" value="Post Comment"
+        class="btn text-warning-emphasis bg-warning-subtle">
+    </form>
+  </div>
+</div>
+
+{% endblock main-content %}
+

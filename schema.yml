@@ -1,0 +1,6876 @@
+openapi: 3.0.3
+info:
+  title: Todo App Api
+  version: 1.0.0
+  description: A sample todo app api
+paths:
+  /api/users/:
+    get:
+      operationId: users_list
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+  /api/users{format}:
+    get:
+      operationId: users_formatted_list
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+  /api/users/{id}/:
+    get:
+      operationId: users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/users/{id}{format}:
+    get:
+      operationId: users_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/workspace/:
+    get:
+      operationId: workspace_list
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workspace'
+          description: ''
+    post:
+      operationId: workspace_create
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+  /api/workspace{format}:
+    get:
+      operationId: workspace_formatted_list
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workspace'
+          description: ''
+    post:
+      operationId: workspace_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+  /api/workspace/{id}/:
+    get:
+      operationId: workspace_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+    put:
+      operationId: workspace_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+    patch:
+      operationId: workspace_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspace'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspace'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspace'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+    delete:
+      operationId: workspace_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{id}{format}:
+    get:
+      operationId: workspace_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+    put:
+      operationId: workspace_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+    patch:
+      operationId: workspace_formatted_partial_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspace'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspace'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspace'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: ''
+    delete:
+      operationId: workspace_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/:
+    get:
+      operationId: workspace_category_list
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+    post:
+      operationId: workspace_category_create
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+  /api/workspace/{ws_pk}/category{format}:
+    get:
+      operationId: workspace_category_formatted_list
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+    post:
+      operationId: workspace_category_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/comment/:
+    get:
+      operationId: workspace_category_comment_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    post:
+      operationId: workspace_category_comment_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/comment{format}:
+    get:
+      operationId: workspace_category_comment_formatted_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    post:
+      operationId: workspace_category_comment_formatted_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/comment/{id}/:
+    get:
+      operationId: workspace_category_comment_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    put:
+      operationId: workspace_category_comment_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    patch:
+      operationId: workspace_category_comment_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    delete:
+      operationId: workspace_category_comment_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/comment/{id}{format}:
+    get:
+      operationId: workspace_category_comment_formatted_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    put:
+      operationId: workspace_category_comment_formatted_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategoryComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    patch:
+      operationId: workspace_category_comment_formatted_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryComment'
+          description: ''
+    delete:
+      operationId: workspace_category_comment_formatted_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/:
+    get:
+      operationId: workspace_category_project_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+          description: ''
+    post:
+      operationId: workspace_category_project_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/project{format}:
+    get:
+      operationId: workspace_category_project_formatted_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+          description: ''
+    post:
+      operationId: workspace_category_project_formatted_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{id}/:
+    get:
+      operationId: workspace_category_project_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+    put:
+      operationId: workspace_category_project_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+    patch:
+      operationId: workspace_category_project_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProject'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProject'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProject'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+    delete:
+      operationId: workspace_category_project_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{id}{format}:
+    get:
+      operationId: workspace_category_project_formatted_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+    put:
+      operationId: workspace_category_project_formatted_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+    patch:
+      operationId: workspace_category_project_formatted_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProject'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProject'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProject'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+    delete:
+      operationId: workspace_category_project_formatted_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/comment/:
+    get:
+      operationId: workspace_category_project_comment_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    post:
+      operationId: workspace_category_project_comment_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/comment{format}:
+    get:
+      operationId: workspace_category_project_comment_formatted_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    post:
+      operationId: workspace_category_project_comment_formatted_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/comment/{id}/:
+    get:
+      operationId: workspace_category_project_comment_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    put:
+      operationId: workspace_category_project_comment_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    patch:
+      operationId: workspace_category_project_comment_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    delete:
+      operationId: workspace_category_project_comment_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/comment/{id}{format}:
+    get:
+      operationId: workspace_category_project_comment_formatted_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    put:
+      operationId: workspace_category_project_comment_formatted_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    patch:
+      operationId: workspace_category_project_comment_formatted_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectComment'
+          description: ''
+    delete:
+      operationId: workspace_category_project_comment_formatted_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/task/:
+    get:
+      operationId: workspace_category_project_task_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    post:
+      operationId: workspace_category_project_task_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/task{format}:
+    get:
+      operationId: workspace_category_project_task_formatted_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    post:
+      operationId: workspace_category_project_task_formatted_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/task/{id}/:
+    get:
+      operationId: workspace_category_project_task_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    put:
+      operationId: workspace_category_project_task_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    patch:
+      operationId: workspace_category_project_task_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectTask'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    delete:
+      operationId: workspace_category_project_task_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/project/{pr_pk}/task/{id}{format}:
+    get:
+      operationId: workspace_category_project_task_formatted_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    put:
+      operationId: workspace_category_project_task_formatted_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectTask'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    patch:
+      operationId: workspace_category_project_task_formatted_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectTask'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTask'
+          description: ''
+    delete:
+      operationId: workspace_category_project_task_formatted_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: pr_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/task/:
+    get:
+      operationId: workspace_category_task_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+          description: ''
+    post:
+      operationId: workspace_category_task_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/task{format}:
+    get:
+      operationId: workspace_category_task_formatted_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+          description: ''
+    post:
+      operationId: workspace_category_task_formatted_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/task/{id}/:
+    get:
+      operationId: workspace_category_task_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    put:
+      operationId: workspace_category_task_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    patch:
+      operationId: workspace_category_task_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    delete:
+      operationId: workspace_category_task_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/task/{id}{format}:
+    get:
+      operationId: workspace_category_task_formatted_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    put:
+      operationId: workspace_category_task_formatted_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    patch:
+      operationId: workspace_category_task_formatted_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    delete:
+      operationId: workspace_category_task_formatted_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/task/{task_pk}/comment/:
+    get:
+      operationId: workspace_category_task_comment_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskComment'
+          description: ''
+    post:
+      operationId: workspace_category_task_comment_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/task/{task_pk}/comment{format}:
+    get:
+      operationId: workspace_category_task_comment_formatted_list
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskComment'
+          description: ''
+    post:
+      operationId: workspace_category_task_comment_formatted_create
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+  /api/workspace/{ws_pk}/category/{cat_pk}/task/{task_pk}/comment/{id}/:
+    get:
+      operationId: workspace_category_task_comment_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+    put:
+      operationId: workspace_category_task_comment_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+    patch:
+      operationId: workspace_category_task_comment_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+    delete:
+      operationId: workspace_category_task_comment_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{cat_pk}/task/{task_pk}/comment/{id}{format}:
+    get:
+      operationId: workspace_category_task_comment_formatted_retrieve
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+    put:
+      operationId: workspace_category_task_comment_formatted_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TaskComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+    patch:
+      operationId: workspace_category_task_comment_formatted_partial_update
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskComment'
+          description: ''
+    delete:
+      operationId: workspace_category_task_comment_formatted_destroy
+      parameters:
+      - in: path
+        name: cat_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: task_pk
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{id}/:
+    get:
+      operationId: workspace_category_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    put:
+      operationId: workspace_category_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    patch:
+      operationId: workspace_category_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    delete:
+      operationId: workspace_category_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/category/{id}{format}:
+    get:
+      operationId: workspace_category_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    put:
+      operationId: workspace_category_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    patch:
+      operationId: workspace_category_formatted_partial_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    delete:
+      operationId: workspace_category_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/comment/:
+    get:
+      operationId: workspace_comment_list
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    post:
+      operationId: workspace_comment_create
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+  /api/workspace/{ws_pk}/comment{format}:
+    get:
+      operationId: workspace_comment_formatted_list
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    post:
+      operationId: workspace_comment_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+  /api/workspace/{ws_pk}/comment/{id}/:
+    get:
+      operationId: workspace_comment_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    put:
+      operationId: workspace_comment_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    patch:
+      operationId: workspace_comment_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspaceComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspaceComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspaceComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    delete:
+      operationId: workspace_comment_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/comment/{id}{format}:
+    get:
+      operationId: workspace_comment_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    put:
+      operationId: workspace_comment_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkspaceComment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    patch:
+      operationId: workspace_comment_formatted_partial_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspaceComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspaceComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkspaceComment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceComment'
+          description: ''
+    delete:
+      operationId: workspace_comment_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/priority/:
+    get:
+      operationId: workspace_priority_list
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Priority'
+          description: ''
+    post:
+      operationId: workspace_priority_create
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Priority'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+  /api/workspace/{ws_pk}/priority{format}:
+    get:
+      operationId: workspace_priority_formatted_list
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Priority'
+          description: ''
+    post:
+      operationId: workspace_priority_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Priority'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+  /api/workspace/{ws_pk}/priority/{id}/:
+    get:
+      operationId: workspace_priority_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+    put:
+      operationId: workspace_priority_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Priority'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+    patch:
+      operationId: workspace_priority_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPriority'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPriority'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPriority'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+    delete:
+      operationId: workspace_priority_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/priority/{id}{format}:
+    get:
+      operationId: workspace_priority_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+    put:
+      operationId: workspace_priority_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Priority'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Priority'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+    patch:
+      operationId: workspace_priority_formatted_partial_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPriority'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPriority'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPriority'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Priority'
+          description: ''
+    delete:
+      operationId: workspace_priority_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/status/:
+    get:
+      operationId: workspace_status_list
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Status'
+          description: ''
+    post:
+      operationId: workspace_status_create
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Status'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Status'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+  /api/workspace/{ws_pk}/status{format}:
+    get:
+      operationId: workspace_status_formatted_list
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Status'
+          description: ''
+    post:
+      operationId: workspace_status_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Status'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Status'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+  /api/workspace/{ws_pk}/status/{id}/:
+    get:
+      operationId: workspace_status_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+    put:
+      operationId: workspace_status_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Status'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Status'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+    patch:
+      operationId: workspace_status_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedStatus'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+    delete:
+      operationId: workspace_status_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/status/{id}{format}:
+    get:
+      operationId: workspace_status_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+    put:
+      operationId: workspace_status_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Status'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Status'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+    patch:
+      operationId: workspace_status_formatted_partial_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedStatus'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+    delete:
+      operationId: workspace_status_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/tag/:
+    get:
+      operationId: workspace_tag_list
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+          description: ''
+    post:
+      operationId: workspace_tag_create
+      parameters:
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+  /api/workspace/{ws_pk}/tag{format}:
+    get:
+      operationId: workspace_tag_formatted_list
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+          description: ''
+    post:
+      operationId: workspace_tag_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+  /api/workspace/{ws_pk}/tag/{id}/:
+    get:
+      operationId: workspace_tag_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    put:
+      operationId: workspace_tag_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    patch:
+      operationId: workspace_tag_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    delete:
+      operationId: workspace_tag_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/workspace/{ws_pk}/tag/{id}{format}:
+    get:
+      operationId: workspace_tag_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    put:
+      operationId: workspace_tag_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    patch:
+      operationId: workspace_tag_formatted_partial_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    delete:
+      operationId: workspace_tag_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ws_pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workspace
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Category:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - WorkspaceCommentSerializer
+            - CategorySerializer
+        - Implements
+            - fields: workspace, tree parent with workspace
+            - methods: get_reverse_kwargs for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        workspace:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+        project_list:
+          type: string
+          readOnly: true
+        task_list:
+          type: string
+          readOnly: true
+      required:
+      - children_url
+      - comment_list
+      - created_at
+      - created_by
+      - id
+      - name
+      - parent
+      - parent_url
+      - project_list
+      - task_list
+      - updated_at
+      - url
+      - workspace
+    CategoryComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - CategoryCommentSerializer
+            - custom tree classes
+                - CustomProjectTreeHMS
+                - CustomTaskTreeHMS
+        - Implements
+            - fields: category, tree parent with category
+            - methods: get_reverse_kwargs for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        category:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - category
+      - children_url
+      - created_at
+      - created_by
+      - id
+      - parent
+      - parent_url
+      - updated_at
+      - url
+    PatchedCategory:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - WorkspaceCommentSerializer
+            - CategorySerializer
+        - Implements
+            - fields: workspace, tree parent with workspace
+            - methods: get_reverse_kwargs for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        workspace:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+        project_list:
+          type: string
+          readOnly: true
+        task_list:
+          type: string
+          readOnly: true
+    PatchedCategoryComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - CategoryCommentSerializer
+            - custom tree classes
+                - CustomProjectTreeHMS
+                - CustomTaskTreeHMS
+        - Implements
+            - fields: category, tree parent with category
+            - methods: get_reverse_kwargs for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        category:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+    PatchedPriority:
+      type: object
+      description: |-
+        Custom HyperlinkedModelSerializer for workspace related serializers like
+        tag, priority and status.
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        workspace:
+          type: integer
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedProject:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS > CustomCategoryElementTreeHMS
+        - Used in
+            - ProjectSerializer
+        - Implements
+            - fields: workspace, category, tags, priority, status, tree parent with category
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        detail:
+          type: string
+        workspace:
+          type: integer
+        category:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: integer
+        status:
+          type: integer
+          nullable: true
+        priority:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+        is_visible:
+          type: boolean
+        estimated_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        actual_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+        task_list:
+          type: string
+          readOnly: true
+    PatchedProjectComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - ProjectCommentSerializer
+        - Implements
+            - fields: project, tree parent with project
+            - methods: get_reverse_kwargs() for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        project:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+    PatchedProjectTask:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS > CustomTaskTreeHMS
+        - Used in
+            - ProjectTaskSerializer
+        - Implements
+            - methods:
+                - get_reverse_kwargs() for CustomTreeHMS
+                - _get_view_name() customized for urls for project tasks view
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 240
+        detail:
+          type: string
+        workspace:
+          type: integer
+        category:
+          type: integer
+        project:
+          type: integer
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: integer
+        status:
+          type: integer
+          nullable: true
+        priority:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+        is_visible:
+          type: boolean
+        estimated_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        actual_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+    PatchedStatus:
+      type: object
+      description: |-
+        Custom HyperlinkedModelSerializer for workspace related serializers like
+        tag, priority and status.
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        workspace:
+          type: integer
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedTag:
+      type: object
+      description: |-
+        Custom HyperlinkedModelSerializer for workspace related serializers like
+        tag, priority and status.
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        workspace:
+          type: integer
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedTask:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS > CustomCategoryElementTreeHMS
+        - Used in
+            - TaskSerializer
+        - Implements
+            - fields: workspace, category, tags, priority, status, tree parent with category
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 240
+        detail:
+          type: string
+        workspace:
+          type: integer
+        category:
+          type: integer
+        project:
+          type: integer
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: integer
+        status:
+          type: integer
+          nullable: true
+        priority:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+        is_visible:
+          type: boolean
+        estimated_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        actual_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+    PatchedTaskComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - TaskCommentSerializer
+        - Implements
+            - fields: task, tree parent with task
+            - methods: get_reverse_kwargs() for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        task:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+    PatchedWorkspace:
+      type: object
+      description: |-
+        Custom base HyperlinkedModelSerializer which implements the following
+        - created_by ReadOnlyField
+        - create and updated methods that run model's full_clean
+          - trap django exceptions (`ValidationError`, `IntegrityError`)
+          - raise rest_framework `ValidationError`
+          - update method rolls back django's atomic db transaction in case of error
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        is_default:
+          type: boolean
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        tag_list:
+          type: string
+          readOnly: true
+        priority_list:
+          type: string
+          readOnly: true
+        status_list:
+          type: string
+          readOnly: true
+        category_list:
+          type: string
+          readOnly: true
+        comment_list:
+          type: string
+          readOnly: true
+    PatchedWorkspaceComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - WorkspaceCommentSerializer
+            - CategorySerializer
+        - Implements
+            - fields: workspace, tree parent with workspace
+            - methods: get_reverse_kwargs for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        workspace:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+    Priority:
+      type: object
+      description: |-
+        Custom HyperlinkedModelSerializer for workspace related serializers like
+        tag, priority and status.
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        workspace:
+          type: integer
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - created_by
+      - id
+      - name
+      - updated_at
+      - url
+      - workspace
+    Project:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS > CustomCategoryElementTreeHMS
+        - Used in
+            - ProjectSerializer
+        - Implements
+            - fields: workspace, category, tags, priority, status, tree parent with category
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        detail:
+          type: string
+        workspace:
+          type: integer
+        category:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: integer
+        status:
+          type: integer
+          nullable: true
+        priority:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+        is_visible:
+          type: boolean
+        estimated_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        actual_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+        task_list:
+          type: string
+          readOnly: true
+      required:
+      - category
+      - children_url
+      - comment_list
+      - created_at
+      - created_by
+      - id
+      - parent_url
+      - tags
+      - task_list
+      - title
+      - updated_at
+      - url
+      - uuid
+      - workspace
+    ProjectComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - ProjectCommentSerializer
+        - Implements
+            - fields: project, tree parent with project
+            - methods: get_reverse_kwargs() for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        project:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - children_url
+      - content
+      - created_at
+      - created_by
+      - id
+      - parent
+      - parent_url
+      - project
+      - updated_at
+      - url
+    ProjectTask:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS > CustomTaskTreeHMS
+        - Used in
+            - ProjectTaskSerializer
+        - Implements
+            - methods:
+                - get_reverse_kwargs() for CustomTreeHMS
+                - _get_view_name() customized for urls for project tasks view
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 240
+        detail:
+          type: string
+        workspace:
+          type: integer
+        category:
+          type: integer
+        project:
+          type: integer
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: integer
+        status:
+          type: integer
+          nullable: true
+        priority:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+        is_visible:
+          type: boolean
+        estimated_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        actual_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+      required:
+      - category
+      - children_url
+      - comment_list
+      - created_at
+      - created_by
+      - id
+      - parent_url
+      - title
+      - updated_at
+      - url
+      - uuid
+      - workspace
+    Status:
+      type: object
+      description: |-
+        Custom HyperlinkedModelSerializer for workspace related serializers like
+        tag, priority and status.
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        workspace:
+          type: integer
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - created_by
+      - id
+      - name
+      - updated_at
+      - url
+      - workspace
+    Tag:
+      type: object
+      description: |-
+        Custom HyperlinkedModelSerializer for workspace related serializers like
+        tag, priority and status.
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        workspace:
+          type: integer
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - created_by
+      - id
+      - name
+      - updated_at
+      - url
+      - workspace
+    Task:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS > CustomCategoryElementTreeHMS
+        - Used in
+            - TaskSerializer
+        - Implements
+            - fields: workspace, category, tags, priority, status, tree parent with category
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 240
+        detail:
+          type: string
+        workspace:
+          type: integer
+        category:
+          type: integer
+        project:
+          type: integer
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: integer
+        status:
+          type: integer
+          nullable: true
+        priority:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+        is_visible:
+          type: boolean
+        estimated_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        actual_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        actual_effort:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          description: in days
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+        comment_list:
+          type: string
+          readOnly: true
+      required:
+      - category
+      - children_url
+      - comment_list
+      - created_at
+      - created_by
+      - id
+      - parent_url
+      - title
+      - updated_at
+      - url
+      - uuid
+      - workspace
+    TaskComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - TaskCommentSerializer
+        - Implements
+            - fields: task, tree parent with task
+            - methods: get_reverse_kwargs() for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        task:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - children_url
+      - created_at
+      - created_by
+      - id
+      - parent
+      - parent_url
+      - task
+      - updated_at
+      - url
+    User:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        workspaces:
+          type: array
+          items:
+            type: string
+            format: uri
+          readOnly: true
+      required:
+      - id
+      - url
+      - username
+      - workspaces
+    Workspace:
+      type: object
+      description: |-
+        Custom base HyperlinkedModelSerializer which implements the following
+        - created_by ReadOnlyField
+        - create and updated methods that run model's full_clean
+          - trap django exceptions (`ValidationError`, `IntegrityError`)
+          - raise rest_framework `ValidationError`
+          - update method rolls back django's atomic db transaction in case of error
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        is_default:
+          type: boolean
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        tag_list:
+          type: string
+          readOnly: true
+        priority_list:
+          type: string
+          readOnly: true
+        status_list:
+          type: string
+          readOnly: true
+        category_list:
+          type: string
+          readOnly: true
+        comment_list:
+          type: string
+          readOnly: true
+      required:
+      - category_list
+      - comment_list
+      - created_at
+      - created_by
+      - id
+      - priority_list
+      - status_list
+      - tag_list
+      - updated_at
+      - url
+    WorkspaceComment:
+      type: object
+      description: |-
+        - Inherits from CustomBaseHMS > CustomTreeHMS
+        - Used in
+            - WorkspaceCommentSerializer
+            - CategorySerializer
+        - Implements
+            - fields: workspace, tree parent with workspace
+            - methods: get_reverse_kwargs for CustomTreeHMS
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        workspace:
+          type: integer
+        parent:
+          type: integer
+          nullable: true
+        created_by:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        parent_url:
+          type: string
+          readOnly: true
+          nullable: true
+        children_url:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - children_url
+      - created_at
+      - created_by
+      - id
+      - parent
+      - parent_url
+      - updated_at
+      - url
+      - workspace
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
