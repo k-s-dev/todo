@@ -1,0 +1,157 @@
+<div class="text-danger">
+  {{ task_form.non_field_errors }}
+</div>
+
+<div class="row mb-2">
+  <div class="text-danger">
+    {{ task_form.title.errors }}
+  </div>
+  <label for="{{ task_form.title.id_for_label }}" class="col-sm-2 col-form-label fs-5 fw-medium">{{ task_form.title.label }}: </label>
+  <div class="col-sm-10">
+    {{ task_form.title }}
+  </div>
+</div>
+
+<div class="row g-3 mb-2">
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.status.errors }}
+    </div>
+    <label for="{{ task_form.status.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.status.label }}</label>
+    {{ task_form.status }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.priority.errors }}
+    </div>
+    <label for="{{ task_form.priority.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.priority.label }}</label>
+    {{ task_form.priority }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.parent.errors }}
+    </div>
+    <label for="{{ task_form.parent.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.parent.label }}</label>
+    {{ task_form.parent }}
+  </div>
+</div>
+
+<div class="row g-3 mb-2">
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.workspace.errors }}
+    </div>
+    <label for="{{ task_form.workspace.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.workspace.label }}</label>
+    {{ task_form.workspace }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.category.errors }}
+    </div>
+    <label for="{{ task_form.category.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.category.label }}</label>
+    {{ task_form.category }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.project.errors }}
+    </div>
+    <label for="{{ task_form.project.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.project.label }}</label>
+    {{ task_form.project }}
+  </div>
+</div>
+
+<div class="row g-3 mb-2">
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.estimated_start_date.errors }}
+    </div>
+    <label for="{{ task_form.estimated_start_date.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.estimated_start_date.label }}</label>
+    {{ task_form.estimated_start_date }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.estimated_end_date.errors }}
+    </div>
+    <label for="{{ task_form.estimated_end_date.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.estimated_end_date.label }}</label>
+    {{ task_form.estimated_end_date }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.actual_start_date.errors }}
+    </div>
+    <label for="{{ task_form.actual_start_date.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.actual_start_date.label }}</label>
+    {{ task_form.actual_start_date }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.actual_end_date.errors }}
+    </div>
+    <label for="{{ task_form.actual_end_date.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.actual_end_date.label }}</label>
+    {{ task_form.actual_end_date }}
+  </div>
+</div>
+
+<div class="row g-3 mb-2">
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.estimated_effort.errors }}
+    </div>
+    <label for="{{ task_form.estimated_effort.id_for_label }}"
+      class="form-label fw-medium"
+      >{{ task_form.estimated_effort.label }}</label>
+    {{ task_form.estimated_effort }}
+    {{ task_form.estimated_effort.help_text }}
+  </div>
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.actual_effort.errors }}
+    </div>
+    <label for="{{ task_form.actual_effort.id_for_label }}" class="form-label fw-medium"
+      >{{ task_form.actual_effort.label }}</label>
+    {{ task_form.actual_effort }}
+    {{ task_form.actual_effort.help_text }}
+  </div>
+</div>
+
+<div class="row mb-2">
+  <div class="col-8">
+    <div class="fs-5">
+      <label for="{{ task_form.detail.id_for_label }}" class="col-form-label fw-medium">{{ task_form.detail.label }}: </label>
+    </div>
+    {{ task_form.detail }}
+  </div>
+  <div class="col-4">
+    <div class="text-danger">
+      {{ task_form.tags.errors }}
+    </div>
+    <div class="fs-5">
+      <label for="{{ task_form.tags.id_for_label }}" class="form-label fw-medium"
+        >{{ task_form.tags.label }}</label>
+    </div>
+    {{ task_form.tags }}
+  </div>
+</div>
+
+<div class="row mb-2">
+  <div class="col">
+    <div class="text-danger">
+      {{ task_form.is_visible.errors }}
+    </div>
+    <div class="form-check form-switch">
+      <label for="{{ task_form.is_visible.id_for_label }}" class="form-label fw-medium"
+        >{{ task_form.is_visible.label }}</label>
+      {{ task_form.is_visible }}
+    </div>
+  </div>
+</div>
+

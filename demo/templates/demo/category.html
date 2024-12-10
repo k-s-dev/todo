@@ -1,0 +1,214 @@
+{% extends "demo/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block main-content %}
+
+<h4>
+  Workspace: <a href="{{ workspace.get_absolute_url }}"
+    class="text-warning-emphasis bg-warning-subtle"
+    >{{ workspace.name | title }}</a>
+  > Category: <a href="{{ category.get_absolute_url }}"
+    class="text-danger-emphasis bg-danger-subtle"
+    >{{ category.name | title }}</a>
+</h4>
+<div class="my-2">
+  <p class="">{{ category.detail }}</p>
+  <p class="">
+    <span class="">Owner: {{ category.created_by }}</span>
+    <span class="">| Created at: {{ category.created_at }}</span>
+    <span class="">| Updated at: {{ category.updated_at }}</span>
+  </p>
+</div>
+<hr>
+
+<div class="d-inline-block">
+  <h3>Projects</h3>
+</div>
+<div class="d-inline-block float-end">
+  <a href="{% url 'demo:project-create' %}?ws_pk={{ workspace.pk }}&cat_pk={{ category.pk }}"
+    class="btn text-primary-emphasis bg-primary-subtle me-2"
+    >Create Project</a>
+</div>
+<hr>
+{% if category_projects %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Parent</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Status</th>
+      <th scope="col">End(est)</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for project in category_projects %}
+    <tr>
+      <td><a href="{{ project.get_absolute_url }}"
+          class="link-dark"
+          >{{ project.title }}</a></td>
+      <td><a href="{{ project.parent.get_absolute_url }}"
+          class="link-dark"
+          >{{ project.parent.title|default_if_none:"" }}</a></td>
+      <td>{{ project.priority }}</td>
+      <td>{{ project.status }}</td>
+      <td>{{ project.estimated_end_date|default_if_none:"" }}</td>
+      <td>{{ project.actual_start_date|default_if_none:"" }}</td>
+      <td>{{ project.actual_end_date|default_if_none:"" }}</td>
+      <td>
+        <a href="{% url 'demo:project-detail' project.uuid %}">
+          <i class="bi-pencil-square fs-5 text-primary-emphasis"></i>
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'demo:project-delete' project.uuid %}">
+          <i class="bi-trash3 fs-5 text-danger-emphasis"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>There are no visible projects in this category. Check archive if needed.</p>
+{% endif %}
+<hr>
+<div class="d-inline-block">
+  <h3>Tasks</h3>
+</div>
+<div class="d-inline-block float-end">
+  <a href="{% url 'demo:task-create' %}?ws_pk={{ workspace.pk }}&cat_pk={{ category.pk }}"
+    class="btn text-primary-emphasis bg-primary-subtle me-2"
+    >Create Task</a>
+</div>
+<hr>
+
+<h4>Project Tasks</h4>
+{% if category_project_tasks %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      <th scope="col">Title</th>
+      <th scope="col">Parent</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Status</th>
+      <th scope="col">End(est)</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in category_project_tasks %}
+    <tr>
+      <td><a href="{{ task.project.get_absolute_url }}"
+          class="link-dark"
+          >{{ task.project.title }}</a></td>
+      <td><a href="{{ task.get_absolute_url }}"
+          class="link-dark"
+          >{{ task.title }}</a></td>
+      <td><a href="{{ task.parent.get_absolute_url }}"
+          class="link-dark"
+          >{{ task.parent.title }}</a></td>
+      <td>{{ task.priority }}</td>
+      <td>{{ task.status }}</td>
+      <td>{{ task.estimated_end_date|default_if_none:"" }}</td>
+      <td>{{ task.actual_start_date|default_if_none:"" }}</td>
+      <td>{{ task.actual_end_date|default_if_none:"" }}</td>
+      <td>
+        <a href="{% url 'demo:task-detail' task.uuid %}">
+          <i class="bi-pencil-square fs-5 text-primary-emphasis"></i>
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'demo:task-delete' task.uuid %}">
+          <i class="bi-trash3 fs-5 text-danger-emphasis"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>There are no visible tasks related to projects. Check archive if needed.</p>
+{% endif %}
+<hr>
+
+<h4>Independent Tasks</h4>
+{% if category_independent_tasks %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Parent</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Status</th>
+      <th scope="col">End(est)</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in category_independent_tasks %}
+    <tr>
+      <td><a href="{{ task.get_absolute_url }}"
+          class="link-dark"
+          >{{ task.title }}</a></td>
+      <td><a href="{{ task.parent.get_absolute_url }}"
+          class="link-dark"
+          >{{ task.parent.title }}</a></td>
+      <td>{{ task.priority }}</td>
+      <td>{{ task.status }}</td>
+      <td>{{ task.estimated_end_date|default_if_none:"" }}</td>
+      <td>{{ task.actual_start_date|default_if_none:"" }}</td>
+      <td>{{ task.actual_end_date|default_if_none:"" }}</td>
+      <td>
+        <a href="{% url 'demo:task-detail' task.uuid %}">
+          <i class="bi-pencil-square fs-5 text-primary-emphasis"></i>
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'demo:task-delete' task.uuid %}">
+          <i class="bi-trash3 fs-5 text-danger-emphasis"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>There are no visible independent tasks. Check archive if needed.</p>
+{% endif %}
+<hr>
+
+<div class="mb-3">
+  <h4>Existing Comments</h4>
+  {% if rendered_comments %}
+  {{ rendered_comments | safe }}
+  {% else %}
+  <p>There are no comments yet.</p>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  <h4>Comment</h4>
+  <div class="border rounded border-secondary p-4">
+    <form method="post">
+      {% csrf_token %}
+      {{ comment_form|crispy }}
+      <input type="submit" value="Post Comment"
+        class="btn btn text-success-emphasis bg-success-subtle">
+    </form>
+  </div>
+</div>
+
+{% endblock main-content %}

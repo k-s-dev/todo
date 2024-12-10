@@ -1,0 +1,473 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$870000$hPL8xKAVxF7Om9q8MnnqFi$++XWVSpfuuVzxW+UXGZFNWj+yWySspXXu/0qY0pkalg=",
+            "last_login": "2024-11-29T10:30:50.471Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@example.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-11-26T10:01:36.457Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$870000$0u840Co66WGQ2mDje1qkxV$IKoVu7PXuQHvEDie6tWTlFKAYLxhk1rurjBuN4lQAZs=",
+            "last_login": "2024-11-29T10:13:38.361Z",
+            "is_superuser": false,
+            "username": "user-1",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-11-29T10:13:34.142Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "core.workspace",
+        "pk": 1,
+        "fields": {
+            "name": "default",
+            "description": "",
+            "is_default": true,
+            "created_at": "2024-11-12T04:03:05.344Z",
+            "updated_at": "2024-11-12T04:03:05.344Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.Category",
+        "pk": 1,
+        "fields": {
+            "name": "Personal",
+            "description": "",
+            "workspace": 1,
+            "parent": null,
+            "created_at": "2024-11-12T04:05:47.360Z",
+            "updated_at": "2024-11-12T04:05:47.360Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.category",
+        "pk": 2,
+        "fields": {
+            "name": "Home",
+            "description": "",
+            "workspace": 1,
+            "parent": 1,
+            "created_at": "2024-11-12T04:05:58.602Z",
+            "updated_at": "2024-11-12T04:05:58.602Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.category",
+        "pk": 3,
+        "fields": {
+            "name": "Proffessional",
+            "description": "",
+            "workspace": 1,
+            "parent": null,
+            "created_at": "2024-11-12T04:06:17.273Z",
+            "updated_at": "2024-11-12T04:06:17.273Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.category",
+        "pk": 4,
+        "fields": {
+            "name": "Finance",
+            "description": "",
+            "workspace": 1,
+            "parent": 1,
+            "created_at": "2024-11-12T04:06:31.101Z",
+            "updated_at": "2024-11-12T04:06:31.101Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.category",
+        "pk": 5,
+        "fields": {
+            "name": "Learn",
+            "description": "",
+            "workspace": 1,
+            "parent": 3,
+            "created_at": "2024-11-12T04:06:54.920Z",
+            "updated_at": "2024-11-12T04:06:54.920Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.category",
+        "pk": 6,
+        "fields": {
+            "name": "Tax",
+            "description": "",
+            "workspace": 1,
+            "parent": 4,
+            "created_at": "2024-11-17T12:43:36.156Z",
+            "updated_at": "2024-11-17T12:49:40.037Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.tag",
+        "pk": 1,
+        "fields": {
+            "name": "learn",
+            "workspace": 1,
+            "created_at": "2024-11-12T04:03:18.893Z",
+            "updated_at": "2024-11-12T04:03:18.893Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.tag",
+        "pk": 2,
+        "fields": {
+            "name": "python",
+            "workspace": 1,
+            "created_at": "2024-11-12T04:03:37.201Z",
+            "updated_at": "2024-11-12T04:03:37.201Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.tag",
+        "pk": 3,
+        "fields": {
+            "name": "dev",
+            "workspace": 1,
+            "created_at": "2024-11-12T04:03:48.150Z",
+            "updated_at": "2024-11-12T04:03:48.151Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.tag",
+        "pk": 4,
+        "fields": {
+            "name": "web dev",
+            "workspace": 1,
+            "created_at": "2024-11-12T04:04:03.845Z",
+            "updated_at": "2024-11-12T04:04:03.845Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.priority",
+        "pk": 1,
+        "fields": {
+            "name": "High",
+            "order": 0,
+            "description": null,
+            "workspace": 1,
+            "created_at": "2024-11-12T04:04:03.845Z",
+            "updated_at": "2024-11-12T04:04:03.845Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.priority",
+        "pk": 2,
+        "fields": {
+            "name": "Medium",
+            "order": 0,
+            "description": null,
+            "workspace": 1,
+            "created_at": "2024-11-12T04:04:03.845Z",
+            "updated_at": "2024-11-12T04:04:03.845Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.priority",
+        "pk": 3,
+        "fields": {
+            "name": "Low",
+            "order": 0,
+            "description": null,
+            "workspace": 1,
+            "created_at": "2024-11-12T04:04:03.845Z",
+            "updated_at": "2024-11-12T04:04:03.845Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.status",
+        "pk": 1,
+        "fields": {
+            "name": "Todo",
+            "order": 0,
+            "description": null,
+            "workspace": 1,
+            "created_at": "2024-11-12T04:04:03.845Z",
+            "updated_at": "2024-11-12T04:04:03.845Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.status",
+        "pk": 2,
+        "fields": {
+            "name": "In-progress",
+            "order": 0,
+            "description": null,
+            "workspace": 1,
+            "created_at": "2024-11-12T04:04:03.845Z",
+            "updated_at": "2024-11-12T04:04:03.845Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.status",
+        "pk": 3,
+        "fields": {
+            "name": "Done",
+            "order": 0,
+            "description": null,
+            "workspace": 1,
+            "created_at": "2024-11-12T04:04:03.845Z",
+            "updated_at": "2024-11-12T04:04:03.845Z",
+            "created_by": 1
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": 4,
+        "fields": {
+            "uuid": "6b189073-e4d0-4ad9-b11e-c205f4af428b",
+            "title": "Project 1",
+            "detail": "",
+            "workspace": 1,
+            "category": 1,
+            "status": null,
+            "priority": null,
+            "parent": null,
+            "estimated_start_date": null,
+            "estimated_end_date": null,
+            "actual_start_date": null,
+            "actual_end_date": null,
+            "estimated_effort": null,
+            "actual_effort": null,
+            "is_visible": true,
+            "created_at": "2024-11-28T01:11:03.834Z",
+            "updated_at": "2024-11-29T05:51:26.719Z",
+            "created_by": 1,
+            "tags": []
+        }
+    },
+    {
+        "model": "core.projectcomment",
+        "pk": 1,
+        "fields": {
+            "content": "comment 1",
+            "project": 4,
+            "parent": null,
+            "created_by": 1,
+            "created_at": "2024-11-28T10:51:21.453Z",
+            "updated_at": "2024-11-28T10:51:21.453Z"
+        }
+    },
+    {
+        "model": "core.task",
+        "pk": 1,
+        "fields": {
+            "uuid": "44482853-647e-42ea-8493-9b76ef86fea2",
+            "title": "Project task",
+            "detail": "",
+            "workspace": 1,
+            "category": 1,
+            "project": 4,
+            "status": null,
+            "priority": null,
+            "parent": null,
+            "is_visible": true,
+            "estimated_start_date": null,
+            "estimated_end_date": null,
+            "actual_start_date": null,
+            "actual_end_date": null,
+            "estimated_effort": null,
+            "actual_effort": null,
+            "created_at": "2024-11-19T05:53:58.519Z",
+            "updated_at": "2024-11-29T10:01:51.702Z",
+            "created_by": 1,
+            "tags": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "core.task",
+        "pk": 2,
+        "fields": {
+            "uuid": "ba41373b-5e99-46b6-a07f-17104f40ca96",
+            "title": "Project task nested with depth 1",
+            "detail": "",
+            "workspace": 1,
+            "category": 1,
+            "project": 4,
+            "status": null,
+            "priority": null,
+            "parent": 1,
+            "is_visible": true,
+            "estimated_start_date": null,
+            "estimated_end_date": null,
+            "actual_start_date": null,
+            "actual_end_date": null,
+            "estimated_effort": null,
+            "actual_effort": null,
+            "created_at": "2024-11-19T05:54:40.937Z",
+            "updated_at": "2024-11-29T10:01:51.664Z",
+            "created_by": 1,
+            "tags": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "core.task",
+        "pk": 3,
+        "fields": {
+            "uuid": "769f7819-12ac-4492-8d22-f822a8dcc211",
+            "title": "Project task nested with depth 2",
+            "detail": "",
+            "workspace": 1,
+            "category": 1,
+            "project": 4,
+            "status": null,
+            "priority": null,
+            "parent": 2,
+            "is_visible": true,
+            "estimated_start_date": null,
+            "estimated_end_date": null,
+            "actual_start_date": null,
+            "actual_end_date": null,
+            "estimated_effort": null,
+            "actual_effort": null,
+            "created_at": "2024-11-21T05:06:51.953Z",
+            "updated_at": "2024-11-29T10:01:51.677Z",
+            "created_by": 1,
+            "tags": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "core.task",
+        "pk": 8,
+        "fields": {
+            "uuid": "91cb6e2f-7544-46ce-9824-788c30228b60",
+            "title": "Independent task",
+            "detail": "",
+            "workspace": 1,
+            "category": 1,
+            "project": null,
+            "status": null,
+            "priority": null,
+            "parent": null,
+            "is_visible": true,
+            "estimated_start_date": null,
+            "estimated_end_date": null,
+            "actual_start_date": null,
+            "actual_end_date": null,
+            "estimated_effort": null,
+            "actual_effort": null,
+            "created_at": "2024-11-28T01:34:47.185Z",
+            "updated_at": "2024-11-28T02:03:57.076Z",
+            "created_by": 1,
+            "tags": []
+        }
+    },
+    {
+        "model": "core.task",
+        "pk": 9,
+        "fields": {
+            "uuid": "7602c562-b1a2-4fef-afc4-57b5f4a68216",
+            "title": "Independent nested task",
+            "detail": "",
+            "workspace": 1,
+            "category": 1,
+            "project": null,
+            "status": null,
+            "priority": null,
+            "parent": 8,
+            "is_visible": true,
+            "estimated_start_date": null,
+            "estimated_end_date": null,
+            "actual_start_date": null,
+            "actual_end_date": null,
+            "estimated_effort": null,
+            "actual_effort": null,
+            "created_at": "2024-11-29T02:37:50.948Z",
+            "updated_at": "2024-11-29T10:01:06.495Z",
+            "created_by": 1,
+            "tags": []
+        }
+    },
+    {
+        "model": "core.task",
+        "pk": 10,
+        "fields": {
+            "uuid": "04b6c1f2-2a5e-4ad8-bdb3-2e26bc6c5b77",
+            "title": "Independent archived task",
+            "detail": "",
+            "workspace": 1,
+            "category": 1,
+            "project": null,
+            "status": null,
+            "priority": null,
+            "parent": null,
+            "is_visible": false,
+            "estimated_start_date": null,
+            "estimated_end_date": null,
+            "actual_start_date": null,
+            "actual_end_date": null,
+            "estimated_effort": null,
+            "actual_effort": null,
+            "created_at": "2024-11-29T10:12:22.250Z",
+            "updated_at": "2024-11-29T10:12:22.250Z",
+            "created_by": 1,
+            "tags": []
+        }
+    },
+    {
+        "model": "core.taskcomment",
+        "pk": 1,
+        "fields": {
+            "content": "comment 1",
+            "task": 8,
+            "parent": null,
+            "created_by": 1,
+            "created_at": "2024-11-28T10:32:56.372Z",
+            "updated_at": "2024-11-29T10:31:17.728Z"
+        }
+    },
+    {
+        "model": "core.taskcomment",
+        "pk": 2,
+        "fields": {
+            "content": "comment 1",
+            "task": 9,
+            "parent": null,
+            "created_by": 1,
+            "created_at": "2024-11-29T02:45:07.026Z",
+            "updated_at": "2024-11-29T10:31:25.667Z"
+        }
+    }
+]

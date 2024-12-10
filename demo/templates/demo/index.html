@@ -1,0 +1,34 @@
+{% extends "demo/base.html" %}
+
+{% block main-content %}
+
+{% if user.is_authenticated %}
+
+<div class="my-2">
+  <h3 class="d-inline-block">Workspace List</h3>
+  <div class="d-inline-block float-end">
+    <a href="{% url 'demo:workspace-create' %}"
+      class="btn text-secondary-emphasis bg-secondary-subtle">Create Workspace</a>
+  </div>
+  <hr>
+  {% for ws in workspaces %}
+  <div class="my-2">
+    <h4 class="d-inline-block">{{ ws.name|title }} </h4>
+    <div class="float-end">
+      <a href="{{ ws.get_absolute_url }}"
+        class="btn text-primary-emphasis bg-primary-subtle">View</a>
+      <a href="{% url 'demo:workspace-manage' ws.pk %}" 
+        class="btn text-success-emphasis bg-success-subtle">Manage</a>
+      <a href="{% url 'demo:workspace-update' ws.pk %}" 
+        class="btn text-warning-emphasis bg-warning-subtle">Update</a>
+      <a href="{% url 'demo:workspace-delete' ws.pk %}" 
+        class="btn text-danger-emphasis bg-danger-subtle">Delete</a>
+    </div>
+  </div>
+  <hr>
+  {% endfor %}
+</div>
+
+{% endif %}
+
+{% endblock main-content %}

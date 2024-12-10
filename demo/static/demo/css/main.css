@@ -1,0 +1,15 @@
+main,
+.main-container {
+    min-height: 72.5vh;
+    align-self: center;
+}
+
+.sidebar-col-left {
+    height: fit-content;
+    top: 80px;
+}
+
+li.cat-tree-selected {
+    text-decoration: none;
+    color: darkred;
+}

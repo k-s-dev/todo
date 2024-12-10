@@ -1,0 +1,24 @@
+{% extends "demo/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block main-content %}
+
+<div class="mb-2">
+  <div class="mb-2">
+    <h4>Create Task</h4>
+  </div>
+  <hr>
+  <div class="mb-2">
+    <form method="post">
+      {% csrf_token %}
+
+      {% include "demo/task/form.html" %}
+
+      <div class="d-flex justify-content-end mt-3">
+        <input type="submit" value="Create Task" class="btn btn-primary">
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock main-content %}
